@@ -1,50 +1,53 @@
 Error Logs 
 
 Error1-
-		{
-	  "errorMessage": "Unable to import module 'lambda_function': No module named 'awswrangler'",
-	  "errorType": "Runtime.ImportModuleError",
-	  "stackTrace": []
-		}
+{
+"errorMessage": "Unable to import module 'lambda_function': No module named 'awswrangler'",
+"errorType": "Runtime.ImportModuleError",
+"stackTrace": []
+}
 		
-Solution - In AWS Lambda layers used AWS layers as 'AWSSDKPandas-Python38' Version 8
+Solution - 
+In AWS Lambda layers used AWS layers as 'AWSSDKPandas-Python38' Version 8
 
 
 Error2-
-		{
-		"errorType": "Runtime.ExitError",
-		"errorMessage": "RequestId: f511f4c1-c778-4906-abbd-59dd5e202793 Error: Runtime exited with error: signal: killed"
-		}
+{
+"errorType": "Runtime.ExitError",
+"errorMessage": "RequestId: f511f4c1-c778-4906-abbd-59dd5e202793 Error: Runtime exited with error: signal: killed"
+}
 		
-Solution - Increased the runtime by 5 minutes
+Solution - 
+Increased the runtime by 5 minutes
 
 
 Error3 - 
-		{
-		  "errorMessage": "An error occurred (EntityNotFoundException) when calling the CreateTable operation: Database de_youtube_cleaned not found.",
-		  "errorType": "EntityNotFoundException",
-		  "stackTrace": [
-			"  File \"/var/task/lambda_function.py\", line 39, in lambda_handler\n    raise e\n",
-			"  File \"/var/task/lambda_function.py\", line 26, in lambda_handler\n    wr_response = wr.s3.to_parquet(\n",
-			"  File \"/opt/python/awswrangler/_config.py\", line 733, in wrapper\n    return function(**args)\n",
-			"  File \"/opt/python/awswrangler/_utils.py\", line 174, in inner\n    return func(*args, **kwargs)\n",
-			"  File \"/opt/python/awswrangler/s3/_write_parquet.py\", line 715, in to_parquet\n    return strategy.write(\n",
-			"  File \"/opt/python/awswrangler/s3/_write.py\", line 422, in write\n    self._create_glue_table(**create_table_args)  # pylint: disable=protected-access\n",
-			"  File \"/opt/python/awswrangler/s3/_write_parquet.py\", line 265, in _create_glue_table\n    return _create_parquet_table(\n",
-			"  File \"/opt/python/awswrangler/catalog/_create.py\", line 324, in _create_parquet_table\n    _create_table(\n",
-			"  File \"/opt/python/awswrangler/catalog/_create.py\", line 163, in _create_table\n    client_glue.create_table(**args)\n",
-			"  File \"/var/runtime/botocore/client.py\", line 530, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n",
-			"  File \"/var/runtime/botocore/client.py\", line 960, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"
-		  ]
-		}
+{
+"errorMessage": "An error occurred (EntityNotFoundException) when calling the CreateTable operation: Database de_youtube_cleaned not found.",
+"errorType": "EntityNotFoundException",
+"stackTrace": [
+"  File \"/var/task/lambda_function.py\", line 39, in lambda_handler\n    raise e\n",
+"  File \"/var/task/lambda_function.py\", line 26, in lambda_handler\n    wr_response = wr.s3.to_parquet(\n",
+"  File \"/opt/python/awswrangler/_config.py\", line 733, in wrapper\n    return function(**args)\n",
+"  File \"/opt/python/awswrangler/_utils.py\", line 174, in inner\n    return func(*args, **kwargs)\n",
+"  File \"/opt/python/awswrangler/s3/_write_parquet.py\", line 715, in to_parquet\n    return strategy.write(\n",
+"  File \"/opt/python/awswrangler/s3/_write.py\", line 422, in write\n    self._create_glue_table(**create_table_args)  # pylint: disable=protected-access\n",
+"  File \"/opt/python/awswrangler/s3/_write_parquet.py\", line 265, in _create_glue_table\n    return _create_parquet_table(\n",
+"  File \"/opt/python/awswrangler/catalog/_create.py\", line 324, in _create_parquet_table\n    _create_table(\n",
+"  File \"/opt/python/awswrangler/catalog/_create.py\", line 163, in _create_table\n    client_glue.create_table(**args)\n",
+"  File \"/var/runtime/botocore/client.py\", line 530, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n",
+"  File \"/var/runtime/botocore/client.py\", line 960, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"
+]
+}
 		
-Solution - Instead of creating database using AWS console, created it using CLI. It worked !
-		   Command -
-		   
-		   aws glue create-database --database-input Name=de_youtube_cleaned
+Solution - 
+Instead of creating database using AWS console, created it using CLI. It worked !
+Command -
+aws glue create-database --database-input Name=de_youtube_cleaned
 
 
 Error4 - 
-		An error occurred when creating the trigger: The bucket de-youtube-project-raw-data must be in the same region as arn:aws:lambda:us-east-1:129887161797:function:de-youtube-json-to-parquet.
+An error occurred when creating the trigger: The bucket de-youtube-project-raw-data must be in the same region as arn:aws:lambda:us-east-1:129887161797:function:de-youtube-json-to-parquet.
 
-Solution - Moved the bucket to the same region
+Solution - 
+Moved the bucket to the same region
