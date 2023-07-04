@@ -24,7 +24,7 @@ Raw Data - https://www.kaggle.com/datasets/datasnaek/youtube-new
 * Integration Service - AWS Glue
 
  ## Data Pipeline Architecture
- ![Data Architecture](https://github.com/RajkumariDaur11/Youtube-End-to-End-Pipeline/assets/114231752/8b8dd4bf-1d0e-4591-aa26-422323028201)
+https://github.com/RajkumariDaur11/Youtube-End-to-End-Pipeline/blob/main/Data%20Architecture.jpg
 
 
 
